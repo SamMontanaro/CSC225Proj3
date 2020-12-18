@@ -33,7 +33,7 @@ function btnClick(id) {
         const request = axios.get('http://csc225.mockable.io/consoles' + '/' + id);
         request.then(function(response){
             var respData = response.data;
-            var price = $("<p></p>").text("Price: " + respData.price);
+            var price = $("<p></p>").text("Price: $" + respData.price);
             var country = $("<p></p>").text("Country: " + respData.country);
             var releaseYr = $("<p></p>").text("Release Year: " + respData.releaseYear);
             $(targetDiv).append(price, country, releaseYr);
