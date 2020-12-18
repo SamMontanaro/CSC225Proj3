@@ -22,5 +22,24 @@ jQuery(document).ready(function($){
         $("body").css("background-color", "white");
         $(".container").css("display", "block");
     });
-
 });
+
+function btnClick(id) {
+    var targetDiv = "#extraContent" + id;
+    if ($(targetDiv).children().length == 0) {
+        $(".loadAnim").css("display", "block");
+        $("body").css("background-color", "#505050");
+        $(".container").css("display", "none");
+        const request = axios.get('http://csc225.mockable.io/consoles' + '/' + id);
+        request.then(function(response){
+            var respData = response.data;
+            var price = $("<p></p>").text("Price: " + respData.price);
+            var country = $("<p></p>").text("Country: " + respData.country);
+            var releaseYr = $("<p></p>").text("Release Year: " + respData.releaseYear);
+            $(targetDiv).append(price, country, releaseYr);
+            $(".loadAnim").css("display", "none");
+            $("body").css("background-color", "white");
+            $(".container").css("display", "block");
+        });
+    }
+}
